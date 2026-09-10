@@ -1,0 +1,666 @@
+:root{
+  --red:#9e1524;
+  --red-dark:#650914;
+  --red-side:#7d0d19;
+  --inside:#43060d;
+
+  --white:#fff;
+  --white-mid:#f1f1f1;
+  --white-dark:#d5d5d5;
+
+  --paper:#fbf3e7;
+  --edge:#e4d7c3;
+  --ink:#2b241e;
+  --rose:#c97b84;
+  --sage:#7c9484;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  margin:0;
+  min-height:100%;
+  overflow-x:hidden;
+  font-family:Inter,sans-serif;
+  color:var(--paper);
+  background:#df2941;
+}
+
+body{
+  position:relative;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  top:-480px;
+  left:-480px;
+  width:calc(100% + 960px);
+  height:calc(100% + 960px);
+
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #df2941 0px,
+      #df2941 80px,
+      #169452 80px,
+      #169452 160px
+    );
+
+  background-size:480px 480px;
+
+  z-index:0;
+  pointer-events:none;
+  will-change:transform;
+  transform:translate3d(0,0,0);
+
+  animation:
+    barberMove 18s linear infinite;
+}
+
+/* ================= ANIMASI BACKGROUND ================= */
+
+@keyframes barberMove{
+  from{
+    transform:translate3d(0,0,0);
+  }
+
+  to{
+    transform:translate3d(480px,480px,0);
+  }
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='2.2' opacity='.20' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg transform='translate(18,22)'%3E%3Ccircle cx='12' cy='24' r='9'/%3E%3Cpath d='M4 17L-5 3M4 17L-1 1M20 17L29 3M20 17L23 1'/%3E%3Ccircle cx='9' cy='23' r='1.3' fill='%23ffffff'/%3E%3C/g%3E%3Cg transform='translate(96,98)'%3E%3Cpath d='M0 22L22 22L22 17Q11-6 0 17Z'/%3E%3Ccircle cx='22' cy='17' r='4.5' fill='%23ffffff'/%3E%3C/g%3E%3Cg transform='translate(110,26)'%3E%3Cpath d='M0 10L4 2L8 10L12 2L16 10'/%3E%3C/g%3E%3Cg transform='translate(20,110)'%3E%3Ccircle cx='6' cy='6' r='2'/%3E%3Ccircle cx='18' cy='2' r='1.4'/%3E%3Ccircle cx='2' cy='18' r='1.2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(
+      circle at 50% 15%,
+      rgba(255,255,255,.09),
+      transparent 42%
+    );
+
+  background-repeat:repeat,no-repeat;
+  background-size:180px 180px,100% 100%;
+
+  pointer-events:none;
+  z-index:1;
+}
+
+.kado-stage{
+  position:relative;
+  z-index:2;
+
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px 20px;
+}
+
+.kado-scene{
+  display:none;
+  width:100%;
+  max-width:440px;
+  text-align:center;
+  flex-direction:column;
+  align-items:center;
+}
+
+.kado-scene.active{
+  display:flex;
+}
+
+
+/* ================= MERRY CHRISTMAS ================= */
+
+.greeting{
+  margin:0 0 34px;
+  text-align:center;
+  position:relative;
+  z-index:2;
+}
+
+.greeting-main{
+  margin:0;
+
+  font:
+    600 clamp(2.1rem,9vw,3.4rem)/1.05
+    Fraunces,
+    serif;
+
+  font-style:italic;
+  letter-spacing:-.025em;
+
+  text-shadow:
+    0 3px 0 rgba(101,9,20,.45),
+    0 7px 18px rgba(0,0,0,.28);
+}
+
+.greeting-decoration{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-top:13px;
+}
+
+.greeting-decoration span{
+  display:block;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#fff;
+
+  box-shadow:
+    0 0 8px rgba(255,255,255,.8);
+}
+
+.greeting-decoration::before,
+.greeting-decoration::after{
+  content:"";
+  width:52px;
+  height:2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.85),
+      transparent
+    );
+}
+
+
+/* ================= KADO ================= */
+
+.kado-box-viewport{
+  width:260px;
+  height:260px;
+  position:relative;
+  margin:0 auto;
+  perspective:1000px;
+  touch-action:none;
+  cursor:grab;
+}
+
+.kado-box-viewport:active{
+  cursor:grabbing;
+}
+
+.kado-box3d{
+  position:relative;
+  width:100%;
+  height:100%;
+  transform-style:preserve-3d;
+  transform:rotateX(-14deg) rotateY(-30deg);
+}
+
+.kado-face{
+  position:absolute;
+  top:50%;
+  left:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transform-style:preserve-3d;
+
+  background:
+    linear-gradient(
+      160deg,
+      #c91d32,
+      var(--red)
+    );
+
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,.18);
+
+  overflow:hidden;
+}
+
+.kf-front,
+.kf-back,
+.kf-right,
+.kf-left,
+.kf-bottom,
+.kf-inside{
+  width:150px;
+  height:150px;
+  margin:-75px 0 0 -75px;
+}
+
+.kf-front{
+  transform:translateZ(75px);
+}
+
+.kf-back{
+  transform:rotateY(180deg) translateZ(75px);
+}
+
+.kf-right{
+  transform:rotateY(90deg) translateZ(75px);
+  background:
+    linear-gradient(
+      160deg,
+      var(--red),
+      var(--red-side)
+    );
+}
+
+.kf-left{
+  transform:rotateY(-90deg) translateZ(75px);
+  background:
+    linear-gradient(
+      160deg,
+      var(--red),
+      var(--red-side)
+    );
+}
+
+.kf-bottom{
+  transform:rotateX(-90deg) translateZ(75px);
+  background:var(--red-dark);
+}
+
+.kf-inside{
+  transform:rotateX(90deg) translateZ(75px);
+  background:var(--inside);
+}
+
+
+/* ================= PITA PUTIH ================= */
+
+.ribbon-v,
+.ribbon-h{
+  position:absolute;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--white-dark),
+      var(--white-mid) 25%,
+      var(--white) 50%,
+      var(--white-mid) 75%,
+      var(--white-dark)
+    );
+
+  box-shadow:
+    0 2px 5px rgba(0,0,0,.35),
+    inset 1px 0 rgba(255,255,255,.5),
+    inset -1px 0 rgba(0,0,0,.2);
+}
+
+.ribbon-v{
+  top:0;
+  left:50%;
+  width:26px;
+  height:100%;
+  margin-left:-13px;
+}
+
+.ribbon-h{
+  top:50%;
+  left:0;
+  width:100%;
+  height:26px;
+  margin-top:-13px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--white-dark),
+      var(--white-mid) 25%,
+      var(--white) 50%,
+      var(--white-mid) 75%,
+      var(--white-dark)
+    );
+
+  box-shadow:
+    0 2px 5px rgba(0,0,0,.35),
+    inset 0 1px rgba(255,255,255,.5),
+    inset 0 -1px rgba(0,0,0,.2);
+}
+
+
+/* ================= TUTUP KADO ================= */
+
+.kado-lid-group{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:0;
+  height:0;
+
+  transform:translateY(-68px);
+
+  transform-style:preserve-3d;
+  transition:.65s cubic-bezier(.4,.1,.3,1);
+}
+
+.kado-box3d.open .kado-lid-group{
+  transform:
+    translateY(-230px)
+    translateZ(70px)
+    rotateX(-115deg);
+
+  opacity:0;
+}
+
+.lid-top,
+.lid-front,
+.lid-back,
+.lid-right,
+.lid-left{
+  position:absolute;
+
+  background:
+    linear-gradient(
+      160deg,
+      #c91d32,
+      var(--red)
+    );
+}
+
+.lid-top{
+  width:158px;
+  height:158px;
+  margin:-79px 0 0 -79px;
+
+  transform:
+    rotateX(90deg)
+    translateZ(18px);
+
+  overflow:visible;
+}
+
+.lid-front,
+.lid-back,
+.lid-right,
+.lid-left{
+  width:158px;
+  height:36px;
+  margin:-18px 0 0 -79px;
+}
+
+.lid-front{
+  transform:translateZ(79px);
+}
+
+.lid-back{
+  transform:
+    rotateY(180deg)
+    translateZ(79px);
+}
+
+.lid-right{
+  transform:
+    rotateY(90deg)
+    translateZ(79px);
+
+  background:var(--red-side);
+}
+
+.lid-left{
+  transform:
+    rotateY(-90deg)
+    translateZ(79px);
+
+  background:var(--red-side);
+}
+
+
+/* ================= KARTU ================= */
+
+.kado-card-viewport{
+  width:240px;
+  height:300px;
+  margin:4px auto 0;
+  perspective:1100px;
+  touch-action:none;
+  cursor:grab;
+}
+
+.kado-card-viewport:active{
+  cursor:grabbing;
+}
+
+.kado-card3d{
+  width:100%;
+  height:100%;
+  position:relative;
+
+  transform-style:preserve-3d;
+
+  transform:
+    rotateX(-8deg)
+    rotateY(-16deg);
+}
+
+.cf{
+  position:absolute;
+  inset:0;
+
+  border-radius:14px;
+  overflow:hidden;
+
+  background:var(--paper);
+
+  box-shadow:
+    0 20px 44px rgba(0,0,0,.4);
+
+  backface-visibility:hidden;
+}
+
+.cf-front{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  transform:translateZ(2px);
+}
+
+.cf-front canvas{
+  width:100%;
+  height:100%;
+  cursor:pointer;
+}
+
+.cf-back{
+  transform:
+    rotateY(180deg)
+    translateZ(2px);
+
+  padding:24px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  color:var(--ink);
+  text-align:left;
+}
+
+.to{
+  margin:0 0 10px;
+
+  font:
+    italic 1rem Fraunces,
+    serif;
+
+  color:var(--rose);
+}
+
+.message{
+  margin:0;
+
+  font:
+    1rem/1.55 Fraunces,
+    serif;
+}
+
+.from{
+  margin-top:16px;
+  font-size:.82rem;
+  color:var(--sage);
+}
+
+.cf-edge{
+  position:absolute;
+  background:var(--edge);
+  backface-visibility:hidden;
+}
+
+.cf-top,
+.cf-bottom{
+  width:212px;
+  height:4px;
+  left:14px;
+}
+
+.cf-top{
+  top:0;
+  transform-origin:top;
+  transform:rotateX(-90deg);
+}
+
+.cf-bottom{
+  bottom:0;
+  transform-origin:bottom;
+  transform:rotateX(90deg);
+}
+
+.cf-left,
+.cf-right{
+  width:4px;
+  height:272px;
+  top:14px;
+}
+
+.cf-left{
+  left:0;
+  transform-origin:left;
+  transform:rotateY(90deg);
+}
+
+.cf-right{
+  right:0;
+  transform-origin:right;
+  transform:rotateY(-90deg);
+}
+
+
+/* ================= EFEK ================= */
+
+.spark{
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+  animation:spark .9s ease-out forwards;
+  z-index:20;
+}
+
+@keyframes spark{
+
+  to{
+    transform:
+      translate(
+        var(--dx),
+        var(--dy)
+      )
+      scale(0);
+
+    opacity:0;
+  }
+
+}
+
+
+/* ================= SALJU ================= */
+
+.snow-container{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:3;
+}
+
+.snowflake{
+  position:absolute;
+  top:-10px;
+
+  background:#fff;
+  border-radius:50%;
+
+  animation:
+    snowfall linear infinite,
+    sway ease-in-out infinite;
+}
+
+@keyframes snowfall{
+
+  to{
+    transform:translateY(110vh);
+  }
+
+}
+
+@keyframes sway{
+
+  50%{
+    margin-left:18px;
+  }
+
+}
+
+
+/* ================= ANIMASI KARTU ================= */
+
+@keyframes cardIn{
+
+  from{
+    opacity:0;
+
+    transform:
+      rotateX(-8deg)
+      rotateY(-16deg)
+      scale(.8)
+      translateY(12px);
+  }
+
+  to{
+    opacity:1;
+
+    transform:
+      rotateX(-8deg)
+      rotateY(-16deg)
+      scale(1)
+      translateY(0);
+  }
+
+}
+
+.kado-card3d.entering{
+  animation:
+    cardIn .55s
+    cubic-bezier(.2,.8,.3,1.2)
+    both;
+}
+
+
+/* ================= REDUCED MOTION ================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  *{
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+  }
+
+}

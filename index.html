@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gift</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="kado-stage">
+
+  <!-- ================= SCENE 1 ================= -->
+
+  <div class="kado-scene active" id="giftScene">
+
+    <div class="greeting">
+
+      <h1 class="greeting-main">
+        Merry Christmas
+      </h1>
+
+      <div class="greeting-decoration">
+        <span></span>
+      </div>
+
+    </div>
+
+    <div class="kado-box-viewport" id="boxViewport">
+
+      <div class="kado-box3d" id="box3d">
+
+        <div class="kado-face kf-inside"></div>
+
+        <div class="kado-face kf-bottom">
+
+          <div class="ribbon-v"></div>
+          <div class="ribbon-h"></div>
+
+        </div>
+
+        <div class="kado-face kf-left">
+
+          <div class="ribbon-v"></div>
+          <div class="ribbon-h"></div>
+
+        </div>
+
+        <div class="kado-face kf-right">
+
+          <div class="ribbon-v"></div>
+          <div class="ribbon-h"></div>
+
+        </div>
+
+        <div class="kado-face kf-back">
+
+          <div class="ribbon-v"></div>
+          <div class="ribbon-h"></div>
+
+        </div>
+
+        <div class="kado-face kf-front">
+
+          <div class="ribbon-v"></div>
+          <div class="ribbon-h"></div>
+
+        </div>
+
+        <!-- ================= TUTUP ================= -->
+
+        <div class="kado-lid-group">
+
+          <div class="kado-face lid-left">
+            <div class="ribbon-v"></div>
+          </div>
+
+          <div class="kado-face lid-right">
+            <div class="ribbon-v"></div>
+          </div>
+
+          <div class="kado-face lid-back">
+            <div class="ribbon-v"></div>
+          </div>
+
+          <div class="kado-face lid-front">
+            <div class="ribbon-v"></div>
+          </div>
+
+          <div class="kado-face lid-top">
+
+            <div class="ribbon-v"></div>
+            <div class="ribbon-h"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= SCENE 2 ================= -->
+
+  <div class="kado-scene" id="cardScene">
+
+    <div class="kado-card-viewport" id="cardViewport">
+
+      <div class="kado-card3d" id="card3d">
+
+        <div class="cf cf-front">
+
+          <canvas
+            id="canvas"
+            src="gift.jpg"
+            width="480"
+            height="600">
+          </canvas>
+
+        </div>
+
+        <div class="cf cf-back">
+
+          <p class="to">
+            Untuk Vincentia Sissy,
+          </p>
+
+          <p class="message">
+            Selamat merayakan natal dan tahun baru.
+            semoga kamu suka dengan hadiah ini
+          
+          
+          </p>
+
+          <p class="from">
+            — Indra M
+          </p>
+
+        </div>
+
+        <div class="cf-edge cf-top"></div>
+        <div class="cf-edge cf-bottom"></div>
+        <div class="cf-edge cf-left"></div>
+        <div class="cf-edge cf-right"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
