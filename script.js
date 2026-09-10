@@ -12,118 +12,14 @@ const ctx =
 const w = canvas.width;
 const h = canvas.height;
 
-const gradient =
-  ctx.createLinearGradient(
-    0,
-    0,
-    0,
-    h
-  );
-
-gradient.addColorStop(
-  0,
-  '#fdcb6e'
-);
-
-gradient.addColorStop(
-  1,
-  '#e60000'
-);
-
-ctx.fillStyle = gradient;
-
-ctx.fillRect(
-  0,
-  0,
-  w,
-  h
-);
-
-ctx.beginPath();
-
-ctx.arc(
-  w * .72,
-  h * .28,
-  55,
-  0,
-  Math.PI * 2
-);
-
-ctx.fillStyle =
-  'rgba(251,243,231,.9)';
-
-ctx.fill();
-
-ctx.fillStyle =
-  'rgba(43,36,30,.25)';
-
-ctx.beginPath();
-
-ctx.moveTo(
-  0,
-  h * .65
-);
-
-ctx.quadraticCurveTo(
-  w * .25,
-  h * .5,
-  w * .5,
-  h * .62
-);
-
-ctx.quadraticCurveTo(
-  w * .75,
-  h * .72,
-  w,
-  h * .58
-);
-
-ctx.lineTo(w, h);
-ctx.lineTo(0, h);
-
-ctx.fill();
-
-ctx.fillStyle =
-  'rgba(43,36,30,.4)';
-
-ctx.beginPath();
-
-ctx.moveTo(
-  0,
-  h * .78
-);
-
-ctx.quadraticCurveTo(
-  w * .3,
-  h * .68,
-  w * .6,
-  h * .8
-);
-
-ctx.quadraticCurveTo(
-  w * .85,
-  h * .88,
-  w,
-  h * .75
-);
-
-ctx.lineTo(w, h);
-ctx.lineTo(0, h);
-
-ctx.fill();
-
-ctx.strokeStyle =
-  'rgba(251,243,231,.8)';
-
-ctx.lineWidth = 9;
-
-ctx.strokeRect(
-  4,
-  4,
-  w - 8,
-  h - 8
-);
-
+const img = new image();
+img.src = "gift.jpg";
+img.onload = () => {
+  ctx.drawImage(img, 0, 0, w, h);
+  ctx.strokeStyle = 'rgba (251,254,231,.8)';
+  ctx.limeWidth = 9;
+ctx.strokeRect(4, 4, w - 9, h - 8);
+};
 
 /* ================= SALJU ================= */
 
